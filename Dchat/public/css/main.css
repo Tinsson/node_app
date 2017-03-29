@@ -1,0 +1,21 @@
+body{
+	padding: 50px;
+	font: 14px "Microsoft YaHei",Arial,Helvetica;
+}
+a{color: #00B7FF;}
+#content{
+	width: 800px;
+	margin: 0 auto;
+}
+#room{
+	background-color: #ddd;
+	margin-bottom: 20px;
+}
+#messages{
+	width: 690px;
+	height: 300px;
+	overflow: auto;
+	background-color: #eee;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
