@@ -16,7 +16,7 @@ exports.listen = function(server){
 		handleRoomJoining(socket);
 
 		socket.on("rooms",function(){
-			socket.emit('rooms',io.sockets.manager.rooms);
+			socket.emit('rooms',io.sockets.adapter.rooms);
 		});
 
 		handleClientDisconnection(socket,nickNames,namesUsed);
@@ -42,7 +42,8 @@ function joinRoom(socket,room){
 		text: nickNames[socket.id] + ' has joined ' + room + '.'
 	});
 
-	var usersInRoom = io.socket.clients(room);
+	var usersInRoom = io.sockets.adapter.rooms[room];
+
 	if(usersInRoom.length > 1){
 		var usersInRoomSummary = "Users currently in" + room + ": ";
 		for (var index in usersInRoom){

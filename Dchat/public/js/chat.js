@@ -1,4 +1,4 @@
-console.log(234234);
+
 var Chat = function(socket){
 	this.socket = socket;
 };
