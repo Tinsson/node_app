@@ -1,0 +1,21 @@
+1.require机制
+exports.listen = function(){}返回的是一个默认对象下的一个方法
+module.exports = 对象 这里能把导出的看成一个对象来操作
+
+可以采用引用路径的方法来对当前目录上下级进行操作比如：
+var fish = require('./lib/fish');
+如果没有路径名那么就会使用node_modules目录进行寻找
+var http = require('http');
+如果模块是目录的话，引用的目录下的index.js，除非package.json里的main属性有定义
+{
+	"main": "./fish.js"
+}
+2.http服务器
+node不会自动往客户端响应，需要用res.end()来结束响应，不然请求就会挂起直到客户端超时。
+res.serHeader('Content-Type','text/plain');node提供修改http响应头的方法，一定要调用在
+res.write()或者res.end()之前。
+res.statusCode用来设置状态码
+创立标准的REST服务器需要四个http谓词
+POST 向待办事项清单中添加事项
+GET  显示当前事项列表，或者显示某一事项的详情；
+DELETE
