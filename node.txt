@@ -18,4 +18,32 @@ res.statusCode用来设置状态码
 创立标准的REST服务器需要四个http谓词
 POST 向待办事项清单中添加事项
 GET  显示当前事项列表，或者显示某一事项的详情；
-DELETE
+DELETE 从待办事例清单中移除事例
+PUT  修改已有事例
+req.method可以读取到请求的方法
+最好不要用body.length来设定Content-Length,Content-Length的值是字节长度不是字符长度，node有一个
+Buffer.byteLength(body)方法可以设定这个
+node提供一个url模块的parse()函数，能把URL解析到一个对象里，里面有pathname,path等信息
+__dirname能获取到该文件所在目录的路径
+用path模块的.join()方法可以把根目录和pathname结合起来得到绝对路径
+可以在开头定义好常用方法，比如
+var parse = require('url').parse;
+var join = require('path').join;
+var root = __dirname;
+.pipe()方法可以优化数据传输，简化服务器代码
+readableStream.pipe(writableStream);
+利用fs.stat()调用获取文件的相关信息，比如修改时间、字节数等
+res.setHeader('Content-Length',stat.size);用stat对象的属性来设置长度
+解析请求主体时用到了querystring模块，qs.parse(body);
+处理文件时要把表单的enctype属性设置为multipart/form-data,这个适用于BLOB的MIME类型
+然后用formidable来处理上传的文件
+在确认完是文件请求后，就要初始化一个新的formidable.IncomingForm表单，然后用form.parse(req)方法就能访问请求data事件进行解析
+在处理完表单元素后，formidable会发出事件，收到文件并处理好会发出file事件（文件完成后出发），收完输入域后会发出field事件（输入属性名）
+在form.uploadDir = __dirname + "dir";可以把文件传递到根目录的文件里面
+3.https安全性问题
+用openssl genrsa 1024 > key.pem来生成秘钥文件
+创建证书 openssl req -x509 -new -key key.pem > key-cert.pem
+
+
+
+
