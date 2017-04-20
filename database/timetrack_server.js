@@ -5,7 +5,7 @@ var db = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
     password: '123456',
-    database: 'mydb'
+    database: 'timetrack'
 });
 var server = http.createServer(function(req,res){
     switch (req.method){
@@ -42,16 +42,16 @@ db.connect(function(err){
 //     console.log(rows[0].firstname);
 //     console.log(rows.length);
 // })
-var sql = 'CREATE TABLE IF NOT EXISTS word (';
-    sql += 'id INT(10) NOT NULL AUTO_INCREMENT';
-    sql += 'hours DECIMAL(5,2) DEFAULT 0,';
-    sql += 'data DATE,';
-    sql += 'archived INT(1) DEFAULT 0,';
-    sql += 'description LONGTEXT';
-    sql += 'PRIMARY KEY(id)';
+var sql = 'CREATE TABLE IF NOT EXISTS work (';
+    sql += 'id INT(10) NOT NULL AUTO_INCREMENT, ';
+    sql += 'hours DECIMAL(5,2) DEFAULT 0, ';
+    sql += 'date DATE, ';
+    sql += 'archived INT(1) DEFAULT 0, ';
+    sql += 'description LONGTEXT, ';
+    sql += 'PRIMARY KEY(id))';
 db.query(sql,function(err){
     if(err) throw err;
     console.log('Server started...');
-    server.listen(3000);
+    server.listen(3030);
 })
-db.end();
+
