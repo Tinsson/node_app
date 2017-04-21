@@ -10,7 +10,7 @@ exports.parseReceivedData = function(req,cb){
 	var body = "";
 	req.setEncoding('utf8');
 	req.on('data',function(chunk){
-		{body! = chunk};
+		{body += chunk};
 	});
 	req.on('end',function(){
 		var data = qs.parse(body);
@@ -77,8 +77,6 @@ exports.show = function(db,res,showArchived){
 			html += exports.workHitlistHtml(rows);
 			html += exports.workFormHtml();
 			exports.sendHtml(res,html);
-			console.log(rows);
-			db.end();
 		}
 	)
 }
